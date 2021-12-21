@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="normalize.css" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+</head>
+<body>
+    <main>
+        <div class="input_block">
+            <form action="">
+                <input class="input_text" type="text" placeholder="Aktobe">
+                <button class="input_button"></button>
+            </form>
+        </div>
+        <div class="output_block">
+            <div class="weather_block">
+                <div class="weather_block_show">
+                    <p class="weather_block_show_degree">14&deg;</p>
+                    <p class="weather_block_show_city">Aktobe</p>
+                    <img class="weather_block_show_icon" src="img/weather-icon.png" alt="weather">
+                    <img class="weather_block_show_like" src="img/like-icon.png" alt="like">
+                </div>
+                <div class="weather_block_menu">
+                    <ul class="weather_block_menu_list">
+                        <li class="weather_block_menu_item menu_now menu_active">Now</li>
+                        <li class="weather_block_menu_item menu_details">Details</li>
+                        <li class="weather_block_menu_item menu_forecast">Forecast</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="locations_block">
+                <div class="locations_block_title"><p class="locations_block_title_text">Added Locations:</p></div>
+                <div class="locations_block_list">
+                    <ul class="locations_block_list_items">
+                        <li class="locations_block_list_item">Amur</li>
+                        <li class="locations_block_list_item">Samara</li>
+                        <li class="locations_block_list_item">Bali</li>
+                        <li class="locations_block_list_item">Dane</li>
+                        <li class="locations_block_list_item">Kilo</li>
+                        <li class="locations_block_list_item">Nur-Sultan</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
