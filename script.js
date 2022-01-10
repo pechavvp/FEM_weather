@@ -5,7 +5,7 @@ import {getCurrentCity} from "./storage.js";
 
 
 let inputText = document.querySelector(".input_text");
-const serverUrl = 'http://api.openweathermap.org/data/2.5/weather';
+const serverUrl = 'https://api.openweathermap.org/data/2.5/weather';
 const apiKey = 'f660a2fb1e4bad108d6160b7f58c555f';
 let button = document.querySelector(".input_button");
 let likeButton = document.querySelector(".weather_block_show_like");
