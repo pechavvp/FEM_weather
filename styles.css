@@ -160,7 +160,25 @@ main {
 }
 
 .locations_block_list_item {
+    display: flex;
+    justify-content: space-between;
     list-style: none;
     font-size: 24px;
     margin-bottom: 14px;
+    width: 275px;
+}
+
+.locations_block_list_item_cityname {
+    margin: 0;
+    cursor: pointer;
+}
+
+.delete_icon {
+    margin: 0;
+    background: transparent url(img/close-icon.png) no-repeat;
+    background-size: 100%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    opacity: 0.5;
 }

@@ -15,34 +15,18 @@
     <main>
         <div class="input_block">
             <form onsubmit="return false;">
-                <input class="input_text" type="text" placeholder="Aktobe">
+                <input class="input_text" type="text" placeholder="Enter the city">
                 <button class="input_button"></button>
             </form>
         </div>
         <div class="output_block">
             <div class="weather_block">
                 <div class="weather_block_now">
-                    <p class="weather_block_show_degree">14&deg;</p>
-                    <p class="weather_block_show_city">Aktobe</p>
-                    <img class="weather_block_show_icon" src="img/weather-icon.png" alt="weather">
+                    <p class="weather_block_show_degree"></p>
+                    <p class="weather_block_show_city"></p>
+                    <img class="weather_block_show_icon" src="img/loading.png" alt="weather">
                     <img class="weather_block_show_like" src="img/like-icon.png" alt="like">
                 </div>
-
-                <!-- <div class="weather_block_details">
-
-                    <div class="weather_block_details_wrap">
-                        <p class="weather_block_details_title_text">Aktobe</p>
-                        <div class="weather_block_details_list">
-                            <ul class="weather_block_details_list_items">
-                                <li class="weather_block_details_list_item">Temperature: 14 &deg;</li>
-                                <li class="weather_block_details_list_item">Feels like: 10 &deg;</li>
-                                <li class="weather_block_details_list_item">Weather: Clouds</li>
-                                <li class="weather_block_details_list_item">Sunrise: 03:21</li>
-                                <li class="weather_block_details_list_item">Sunset: 18:54</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div> -->
 
                 <div class="weather_block_menu">
                     <ul class="weather_block_menu_list">
@@ -56,17 +40,11 @@
                 <div class="locations_block_title"><p class="locations_block_title_text">Added Locations:</p></div>
                 <div class="locations_block_list">
                     <ul class="locations_block_list_items">
-                        <li class="locations_block_list_item">Amur</li>
-                        <li class="locations_block_list_item">Samara</li>
-                        <li class="locations_block_list_item">Bali</li>
-                        <li class="locations_block_list_item">Dane</li>
-                        <li class="locations_block_list_item">Kilo</li>
-                        <li class="locations_block_list_item">Nur-Sultan</li>
                     </ul>
                 </div>
             </div>
         </div>
     </main>
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
