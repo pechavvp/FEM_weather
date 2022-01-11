@@ -53,6 +53,7 @@ main {
 }
 
 .weather_block_details {
+    display: none;
     height: 345px;
     font-size: 24px;
 }

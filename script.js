@@ -18,8 +18,39 @@ let nowCity = document.querySelector(".weather_block_show_city");
 let nowCityName = nowCity.innerHTML;
 let nowIcon = document.querySelector(".weather_block_show_icon");
 
+let menuNowButton = document.querySelector(".menu_now");
+let menuDetailsButton = document.querySelector(".menu_details");
+let menuForecastButton = document.querySelector(".menu_forecast");
+let nowBlock = document.querySelector(".weather_block_now");
+let detailsBlock = document.querySelector(".weather_block_details");
+
+let detailsCity = document.querySelector(".weather_block_details_title_text");
+let detailsTemp = document.querySelector(".details_temp");
+let detailsFeelsLike = document.querySelector(".details_feels");
+let detailsWeather = document.querySelector(".details_weather");
+let detailsSunrise = document.querySelector(".details_sunrise");
+let detailsSunset = document.querySelector(".details_sunset");
+
 button.addEventListener("click", function() {loadInfo(inputText.value)});
 likeButton.addEventListener("click", addToFavorites);
+
+menuDetailsButton.addEventListener("click", showDetailsBlock);
+
+function showDetailsBlock() {
+    nowBlock.style.display = "none";
+    detailsBlock.style.display = "block";
+    menuNowButton.classList.remove("menu_active");
+    menuDetailsButton.classList.add("menu_active");
+}
+
+menuNowButton.addEventListener("click", showNowBlock);
+
+function showNowBlock() {
+    nowBlock.style.display = "block";
+    detailsBlock.style.display = "none";
+    menuNowButton.classList.add("menu_active");
+    menuDetailsButton.classList.remove("menu_active");
+}
 
 loadCurrentCity();
 
@@ -54,11 +85,23 @@ async function loadInfo(cityNameSource) {
         } else if (response.cod === "404") {
             throw new Error("Incorrect city name!");
         } else {
+            console.log(response);
             saveCurrentCity(cityName);
-            let tempInCels = Math.round(response.main.temp - 273.15);
-            nowDegree.innerHTML = `${tempInCels}&deg;`;
+            let tempInCels = function(temp) {return Math.round(temp - 273.15)};
+            nowDegree.innerHTML = `${tempInCels(response.main.temp)}&deg;`;
             nowCity.innerHTML = response.name;
             nowIcon.src = `http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`
+
+            detailsCity.innerHTML = response.name;
+            detailsTemp.innerHTML = `<b>Temperature:</b> ${tempInCels(response.main.temp)}&deg;`;
+            detailsFeelsLike.innerHTML = `<b>Feels like:</b> ${tempInCels(response.main.feels_like)}&deg;`;
+            detailsWeather.innerHTML = `<b>Weather</b>: ${response.weather[0].main}`;
+
+            let correctTime = function(time) {return new Date(time*1000).toLocaleTimeString('en-GB')};
+
+            detailsSunrise.innerHTML = `<b>Sunrise:</b> ${correctTime(response.sys.sunrise)}`;
+            detailsSunset.innerHTML = `<b>Sunset:</b> ${correctTime(response.sys.sunset)}`;
+
             return response;
         }
     })
