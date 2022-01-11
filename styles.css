@@ -44,7 +44,7 @@ main {
 }
 
 .weather_block {
-    width: 300px;
+    width: 299px;
 }
 
 .weather_block_now {
@@ -52,17 +52,17 @@ main {
     position: relative;
 }
 
-.weather_block_details {
-    display: none;
+.weather_block_details, .weather_block_forecast {
     height: 345px;
     font-size: 24px;
+    display: none;
 }
 
-.weather_block_details_wrap {
+.weather_block_details_wrap, .weather_block_forecast_wrap {
     padding: 33px 0 0 15px;
 }
 
-.weather_block_details_title_text {
+.weather_block_details_title_text, .weather_block_forecast_title_text {
     margin: 0;
 }
 
@@ -74,6 +74,72 @@ main {
 
 .weather_block_details_list_item {
     margin-bottom: 14px;
+}
+
+.weather_block_forecast_list {
+    overflow-y: scroll;
+    height: 284px;
+}
+
+.weather_block_forecast_list_items {
+    list-style: none;
+    padding: 0;
+    margin: 7px 0 0 0;
+}
+
+.weather_block_forecast_list_item {
+    width: 265px;
+    height: 120px;
+    border: 1px solid black;
+    margin-bottom: 9px;
+    background-color: rgb(248, 248, 248);
+    font-size: 18px;
+    position: relative;
+}
+
+.weather_block_forecast_date {
+    display: block;
+    position: absolute;
+    top: 6px;
+    left: 8px;
+    margin: 0;
+}
+
+.weather_block_forecast_time {
+    display: block;
+    position: absolute;
+    top: 6px;
+    right: 12px;
+    margin: 0;
+}
+
+.weather_block_forecast_temp {
+    position: absolute;
+    top: 65px;
+    left: 10px;
+    margin: 0;
+}
+
+.weather_block_forecast_weather {
+    position: absolute;
+    top: 61px;
+    right: 10px;
+    margin: 0;
+}
+
+.weather_block_forecast_weather > p {
+    margin: 0;
+}
+
+.weather_block_forecast_temp > p {
+    margin: 0;
+}
+
+.weather_block_forecast_weather_icon {
+    display: block;
+    width: 31px;
+    height: 31px;
+    margin: 0 auto;
 }
 
 .weather_block_show_degree {
@@ -166,7 +232,7 @@ main {
     list-style: none;
     font-size: 24px;
     margin-bottom: 14px;
-    width: 275px;
+    width: 263px;
 }
 
 .locations_block_list_item_cityname {
