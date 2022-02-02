@@ -1,9 +1,9 @@
-export function saveFavoriteCities(arr) {
-    localStorage.favoriteCitiesList = JSON.stringify(arr);
+export function saveFavoriteCities(set) {
+    localStorage.favoriteCitiesList = JSON.stringify([...set]);
 }
 
 export function getFavoriteCities() {
-    let favoriteCitiesList = JSON.parse(localStorage.favoriteCitiesList);
+    let favoriteCitiesList = new Set(JSON.parse(localStorage.favoriteCitiesList));
     return favoriteCitiesList;
 }
 
