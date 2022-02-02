@@ -13,7 +13,7 @@ let likeButton = document.querySelector(".weather_block_show_like");
 let favoritesList = document.querySelector(".locations_block_list_items");
 let deleteFromFavoritesButtons;
 let favoritesCityNames;
-let favoriteCities = [];
+let favoriteCities = new Set();
 let nowDegree = document.querySelector(".weather_block_show_degree");
 let nowCity = document.querySelector(".weather_block_show_city");
 let nowCityName = nowCity.innerHTML;
@@ -87,9 +87,13 @@ loadFavoritesList();
 
 function loadFavoritesList() {
     favoriteCities = getFavoriteCities();
-    favoriteCities.forEach(function(item) {addCityBlock(item)});
+    favoriteCities.forEach(function(item) {
+        let cityBlock = new FavoritesCityBlock(item);
+        cityBlock.add();
+        // addCityBlock(item);
+        deleteFromFavorites(item);
+    });
     loadInfoFromFavorites();
-    deleteFromFavorites();
 }
 
 async function loadInfo(cityNameSource) {
@@ -126,8 +130,6 @@ async function loadInfo(cityNameSource) {
         }
     })
     .catch(err => alert(err.message));
-
-    // console.log(outputInfo);
 
     let forecastInfo = await fetch(forecastUrl)
     .then(response => response.json())
@@ -174,26 +176,36 @@ function addForecastItem(item) {
     `);
 }
 
-
-
-
 function addToFavorites() {
-    favoriteCities.push(nowCity.innerHTML);
-    console.log(favoriteCities);
+    if (!favoriteCities.has(nowCity.innerHTML)) {
+        favoriteCities.add(nowCity.innerHTML);
+        console.log(favoriteCities);
 
-    saveFavoriteCities(favoriteCities);
+        saveFavoriteCities(favoriteCities);
 
-    addCityBlock(nowCity.innerHTML);
+        let cityBlock = new FavoritesCityBlock(nowCity.innerHTML);
+        cityBlock.add();
 
-    deleteFromFavorites();
-    
-    loadInfoFromFavorites();
+        // addCityBlock(nowCity.innerHTML);
+
+        deleteFromFavorites(nowCity.innerHTML);
+        
+        loadInfoFromFavorites();
+    }
 }
 
-function addCityBlock(cityName) {
-    favoritesList.insertAdjacentHTML("afterbegin", 
-    `<li class="locations_block_list_item"><p class="locations_block_list_item_cityname">${cityName}</p><div class="delete_icon"></div></li>`);
+function FavoritesCityBlock(city) {
+    this.name = city;
+    this.add = function() {
+        favoritesList.insertAdjacentHTML("afterbegin", 
+        `<li class="locations_block_list_item"><p class="locations_block_list_item_cityname">${city}</p><div class="delete_icon"></div></li>`);
+    }
 }
+
+// function addCityBlock(cityName) {
+//     favoritesList.insertAdjacentHTML("afterbegin", 
+//     `<li class="locations_block_list_item"><p class="locations_block_list_item_cityname">${cityName}</p><div class="delete_icon"></div></li>`);
+// }
 
 function loadInfoFromFavorites() {
     favoritesCityNames = document.querySelectorAll(".locations_block_list_item_cityname");
@@ -204,19 +216,20 @@ function loadInfoFromFavorites() {
     });
 }
 
-function deleteFromFavorites() {
+function deleteFromFavorites(city) {
     deleteFromFavoritesButtons = document.querySelectorAll(".delete_icon");
     deleteFromFavoritesButtons.forEach(function(item) {
-        item.addEventListener("click", deleteFromFavoritesEvent);
-    });
+        console.log(item.parentNode.firstChild.innerHTML)
+        if (item.parentNode.firstChild.innerHTML == city) {
+            item.addEventListener("click", deleteFromFavoritesEvent);
+        }
+    })
 
     function deleteFromFavoritesEvent() {
-        const indexOfDeleteCity = favoriteCities.indexOf(this.parentNode.firstChild.innerHTML);
-        favoriteCities.splice(indexOfDeleteCity, 1);
-        console.log(favoriteCities);
-
+        favoriteCities.delete(this.parentNode.firstChild.innerHTML);
         saveFavoriteCities(favoriteCities);
-
-        this.parentNode.parentNode.removeChild(this.parentNode);
+        this.parentNode.remove();
+        console.log(this.parentNode);
+        console.log(favoriteCities);
     }
 }
