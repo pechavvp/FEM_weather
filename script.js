@@ -7,7 +7,7 @@ import {getCurrentCity} from "./storage.js";
 let inputText = document.querySelector(".input_text");
 const serverUrl = 'https://api.openweathermap.org/data/2.5/weather';
 const forecastServerUrl = 'https://api.openweathermap.org/data/2.5/forecast';
-const apiKey = 'f660a2fb1e4bad108d6160b7f58c555f';
+const apiKey = 'add70dd1502a125caad4cec4fdea9bec';
 let button = document.querySelector(".input_button");
 let likeButton = document.querySelector(".weather_block_show_like");
 let favoritesList = document.querySelector(".locations_block_list_items");
@@ -112,6 +112,7 @@ async function loadInfo(cityNameSource) {
         } else {
             console.log(response);
             saveCurrentCity(cityName);
+            document.cookie = `currentCity=${encodeURIComponent(cityName)}; max-age=3600`;
             nowDegree.innerHTML = `${tempInCels(response.main.temp)}&deg;`;
             nowCity.innerHTML = response.name;
             nowIcon.src = `https://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`
